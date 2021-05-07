@@ -1,0 +1,97 @@
+ [
+  {
+    "name": "1 Airpods Wireless Bluetooth Headphones",
+    "price": 89.99,
+    "description":
+    "Bluetooth technology lets you connect it with compatible devices wireless High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
+    "ratings": 4.5,
+    "images": [{
+      "public_id": "/images/airpods.jpg",
+      "url": "https://i.picsum.photos/id/652/200/300.jpg?hmac=yJT5T1Ugojp0HlslsxDN_nNnIIk4lsFXcV_5rq9FCTw"
+    }],
+    "category": "Electronic",
+    "seller": "Ebay",
+    "stock": 50,
+    "numOfReviews": 32,
+    "reviews": []
+  },
+   {
+     "name": "2 Airpods Wireless Bluetooth Headphones",
+     "price": 89.99,
+     "description":
+     "Bluetooth technology lets you connect it with compatible devices wireless High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
+     "ratings": 4.5,
+     "images": [{
+       "public_id": "/images/airpods.jpg",
+       "url": "https://i.picsum.photos/id/652/200/300.jpg?hmac=yJT5T1Ugojp0HlslsxDN_nNnIIk4lsFXcV_5rq9FCTw"
+     }],
+     "category": "Electronic",
+     "seller": "Ebay",
+     "stock": 50,
+     "numOfReviews": 32,
+     "reviews": []
+   },
+   {
+     "name": "3 Airpods Wireless Bluetooth Headphones",
+     "price": 89.99,
+     "description":
+     "Bluetooth technology lets you connect it with compatible devices wireless High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
+     "ratings": 4.5,
+     "images": [{
+       "public_id": "/images/airpods.jpg",
+       "url": "https://i.picsum.photos/id/652/200/300.jpg?hmac=yJT5T1Ugojp0HlslsxDN_nNnIIk4lsFXcV_5rq9FCTw"
+     }],
+     "category": "Electronic",
+     "seller": "Ebay",
+     "stock": 50,
+     "numOfReviews": 32,
+     "reviews": []
+   },
+   {
+     "name": "4 Airpods Wireless Bluetooth Headphones",
+     "price": 89.99,
+     "description":
+     "Bluetooth technology lets you connect it with compatible devices wireless High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
+     "ratings": 4.5,
+     "images": [{
+       "public_id": "/images/airpods.jpg",
+       "url": "https://i.picsum.photos/id/652/200/300.jpg?hmac=yJT5T1Ugojp0HlslsxDN_nNnIIk4lsFXcV_5rq9FCTw"
+     }],
+     "category": "Electronic",
+     "seller": "Ebay",
+     "stock": 50,
+     "numOfReviews": 32,
+     "reviews": []
+   },
+   {
+     "name": "5 Airpods Wireless Bluetooth Headphones",
+     "price": 89.99,
+     "description":
+     "Bluetooth technology lets you connect it with compatible devices wireless High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
+     "image": [{
+       "public_id": "/images/airpods.jpg",
+       "url": "https://i.picsum.photos/id/486/200/300.jpg?hmac=yDvKMocLz1Sxg1XI9BgCJRlIyKqiBTdI9RZDij_z8xM"
+     }],
+     "category": "Electronic",
+     "seller": "Ebay",
+     "stock": 50,
+     "numOfReviews": 32,
+     "reviews": []
+   },
+   {
+     "name": "6 Airpods Wireless Bluetooth Headphones",
+     "price": 89.99,
+     "description":
+     "Bluetooth technology lets you connect it with compatible devices wireless High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
+     "ratings": 4.5,
+     "images": [{
+       "public_id": "/images/airpods.jpg",
+       "url": "https://i.picsum.photos/id/652/200/300.jpg?hmac=yJT5T1Ugojp0HlslsxDN_nNnIIk4lsFXcV_5rq9FCTw"
+     }],
+     "category": "Electronic",
+     "seller": "Ebay",
+     "stock": 50,
+     "numOfReviews": 32,
+     "reviews": []
+   }
+ ]
