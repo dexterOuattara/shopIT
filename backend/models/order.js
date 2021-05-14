@@ -26,7 +26,7 @@ const orderSchema = new mongoose.Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
         required:true,
-        ref: 'Uner'
+        ref: 'User'
     },
     orderItems:[
         {
@@ -94,7 +94,7 @@ const orderSchema = new mongoose.Schema({
     },
     createdAt:{
         type: Date,
-        required:Date.now
+        default:Date.now
     }
 
 })
