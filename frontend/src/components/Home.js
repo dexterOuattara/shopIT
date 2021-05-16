@@ -1,9 +1,11 @@
-import React from "react";
-
+import React, {Fragment} from "react";
+import MetaData from "./layout/MetaData";
 import '../App.css';
 
 const Home = () => {
     return (
+        <Fragment>
+            <MetaData title={'Buy Best Products Online'} />
         <div className="container container-fluid">
             <h1 id="products_heading">Latest Products</h1>
 
@@ -34,8 +36,8 @@ const Home = () => {
                 </div>
             </section>
 
-
         </div>
+        </Fragment>
     )
 }
 
