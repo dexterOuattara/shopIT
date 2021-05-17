@@ -8,7 +8,7 @@ const Product = ({ product }) => {
                 <img
                     className="card-img-top mx-auto"
                     src="https://m.media-amazon.com/images/I/617NtexaW2L._AC_UY218_.jpg" alt="product"
-                    alt="product"
+
                 />
                 <div className="card-body d-flex flex-column">
                     <h5 className="card-title">

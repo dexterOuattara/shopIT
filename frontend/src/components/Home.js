@@ -1,22 +1,28 @@
 import React, {Fragment, useEffect} from "react";
 import MetaData from "./layout/MetaData";
-import '../App.css';
 
 import Product from "./product/Product";
 
 import {useDispatch, useSelector} from "react-redux";
 import {getProducts} from "../actions/productActions";
 import Loader from "./layout/Loader";
+import {useAlert} from "react-alert";
 
 const Home = () => {
 
+    const alert = useAlert();
     const disptach = useDispatch();
 
     const { loading, products, error, productsCount } = useSelector(state => state.products)
 
     useEffect(() => {
+
+        if (error){
+            return alert.error(error)
+        }
         disptach(getProducts());
-    }, [disptach])
+
+    }, [disptach, alert, error])
 
     return (
         <Fragment>
