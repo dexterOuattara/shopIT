@@ -4,9 +4,9 @@ import '../../App.css';
 
 const MetaData = ({ title }) => {
     return (
-        <helmet>
+        <Helmet>
             <title>{`${title} - ShopIT`}</title>
-        </helmet>
+        </Helmet>
     )
 }
 
