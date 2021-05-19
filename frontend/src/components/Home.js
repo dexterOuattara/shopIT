@@ -5,6 +5,7 @@ import Product from "./product/Product";
 
 import {useDispatch, useSelector} from "react-redux";
 import {getProducts} from "../actions/productActions";
+
 import Loader from "./layout/Loader";
 import {useAlert} from "react-alert";
 
