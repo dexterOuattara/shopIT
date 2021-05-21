@@ -69,7 +69,8 @@ const ProductDetails = ({ match }) => {
 
                                     <hr />
 
-                                    <p>Status: <span id="stock_status" className={product.seller > 0 ? 'GreenColor' : 'redColor'}>{product.seller > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
+                                    <p>Status: <span id="stock_status" className={product.seller > 0 ? 'GreenColor' : 'redColor'}>
+                                        {product.seller > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
 
                                     <hr />
 

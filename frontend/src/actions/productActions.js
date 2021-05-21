@@ -17,24 +17,32 @@ import {
 // Get Product
 
 
-export const getProducts = (keyword='', currentPage =1) => async (dispatch) => {
+export const getProducts = (keyword = '', currentPage = 1, price, category) => async (dispatch) => {
     try {
+
         dispatch({ type: ALL_PRODUCTS_REQUEST })
 
-        const { data } = await axios.get(`/api/v1/products?keyword=${keyword}&page=${currentPage}`)
+        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+
+        if (category) {
+            link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}`
+        }
+
+        const { data } = await axios.get(link)
 
         dispatch({
             type: ALL_PRODUCTS_SUCCESS,
             payload: data
         })
 
-    }catch (error) {
+    } catch (error) {
         dispatch({
             type: ALL_PRODUCTS_FAIL,
             payload: error.response.data.message
         })
     }
 }
+
 
 
 // Get Details
