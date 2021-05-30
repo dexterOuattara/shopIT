@@ -2,12 +2,33 @@ const Product = require('../models/product')
 
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
-const APIFeatures = require('../utils/apiFeatures');
+const APIFeatures = require('../utils/apiFeatures')
+const cloudinary = require('cloudinary')
 
-// Add a products => GET /api/v1/products
+// Create new product   =>   /api/v1/admin/product/new
+exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
-exports.newProduct = catchAsyncErrors (async (req, res, next) => {
+    let images = []
+    if (typeof req.body.images === 'string') {
+        images.push(req.body.images)
+    } else {
+        images = req.body.images
+    }
 
+    let imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+        const result = await cloudinary.v2.uploader.upload(images[i], {
+            folder: 'products'
+        });
+
+        imagesLinks.push({
+            public_id: result.public_id,
+            url: result.secure_url
+        })
+    }
+
+    req.body.images = imagesLinks
     req.body.user = req.user.id;
 
     const product = await Product.create(req.body);
@@ -18,9 +39,9 @@ exports.newProduct = catchAsyncErrors (async (req, res, next) => {
     })
 })
 
-// get all products => GET /api/v1/products?keywords=apple
 
-exports.getProducts = catchAsyncErrors (async  (req, res, next) => {
+// Get all products   =>   /api/v1/products?keyword=apple
+exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
     const resPerPage = 4;
     const productsCount = await Product.countDocuments();
@@ -29,94 +50,133 @@ exports.getProducts = catchAsyncErrors (async  (req, res, next) => {
         .search()
         .filter()
 
-        let products = await apiFeatures.query;
-        let filteredProductsCount = products.length;
+    let products = await apiFeatures.query;
+    let filteredProductsCount = products.length;
 
-        apiFeatures.pagination(resPerPage)
+    apiFeatures.pagination(resPerPage)
+    products = await apiFeatures.query;
 
-        products = await apiFeatures.query;
 
-    setTimeout(() => {
-
-        res.status(200).json({
-            success: true,
-            productsCount,
-            filteredProductsCount,
-            resPerPage,
-            products
-        })
-
-    }, 2000)
-
+    res.status(200).json({
+        success: true,
+        productsCount,
+        resPerPage,
+        filteredProductsCount,
+        products
+    })
 
 })
 
+// Get all products (Admin)  =>   /api/v1/admin/products
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 
-// get a single product => GET /api/v1/products/:id
+    const products = await Product.find();
 
-exports.getSingleProducts = catchAsyncErrors (async  (req, res, next) => {
+    res.status(200).json({
+        success: true,
+        products
+    })
+
+})
+
+// Get single product details   =>   /api/v1/product/:id
+exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
 
     const product = await Product.findById(req.params.id);
 
-    if (!product){
+    if (!product) {
         return next(new ErrorHandler('Product not found', 404));
     }
+
 
     res.status(200).json({
         success: true,
         product
     })
+
 })
 
-// Update a single product => PUT /api/v1/products/:id
-
-exports.updateProduct = catchAsyncErrors (async  (req, res, next) => {
+// Update Product   =>   /api/v1/admin/product/:id
+exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
     let product = await Product.findById(req.params.id);
 
-    if (!product){
+    if (!product) {
         return next(new ErrorHandler('Product not found', 404));
     }
+
+    let images = []
+    if (typeof req.body.images === 'string') {
+        images.push(req.body.images)
+    } else {
+        images = req.body.images
+    }
+
+    if (images !== undefined) {
+
+        // Deleting images associated with the product
+        for (let i = 0; i < product.images.length; i++) {
+            const result = await cloudinary.v2.uploader.destroy(product.images[i].public_id)
+        }
+
+        let imagesLinks = [];
+
+        for (let i = 0; i < images.length; i++) {
+            const result = await cloudinary.v2.uploader.upload(images[i], {
+                folder: 'products'
+            });
+
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url
+            })
+        }
+
+        req.body.images = imagesLinks
+
+    }
+
+
 
     product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
         useFindAndModify: false
-    })
+    });
 
-    res.send(200).json({
+    res.status(200).json({
         success: true,
         product
-
     })
 
 })
 
-
-// Delete a single product => DELETE /api/v1/products/:id
-
-exports.deleteProduct = catchAsyncErrors (async  (req, res, next) => {
+// Delete Product   =>   /api/v1/admin/product/:id
+exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
     const product = await Product.findById(req.params.id);
 
-    if (!product){
+    if (!product) {
         return next(new ErrorHandler('Product not found', 404));
+    }
 
+    // Deleting images associated with the product
+    for (let i = 0; i < product.images.length; i++) {
+        const result = await cloudinary.v2.uploader.destroy(product.images[i].public_id)
     }
 
     await product.remove();
 
     res.status(200).json({
         success: true,
-        message: `Product deleted`
-
+        message: 'Product is deleted.'
     })
 
 })
 
-// Create new review => /api/v1/review
 
-exports.createProductReview = catchAsyncErrors (async  (req, res, next) => {
+// Create new review   =>   /api/v1/review
+exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 
     const { rating, comment, productId } = req.body;
 
@@ -129,26 +189,26 @@ exports.createProductReview = catchAsyncErrors (async  (req, res, next) => {
 
     const product = await Product.findById(productId);
 
-
     const isReviewed = product.reviews.find(
         r => r.user.toString() === req.user._id.toString()
     )
 
-    if(isReviewed){
+    if (isReviewed) {
         product.reviews.forEach(review => {
-            if (review.user.toString() === req.user._id.toString()){
+            if (review.user.toString() === req.user._id.toString()) {
                 review.comment = comment;
                 review.rating = rating;
             }
         })
-    }else{
+
+    } else {
         product.reviews.push(review);
         product.numOfReviews = product.reviews.length
     }
 
-    product.ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;
+    product.ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length
 
-    await  product.save({ validateBeforeSave:false});
+    await product.save({ validateBeforeSave: false });
 
     res.status(200).json({
         success: true
@@ -156,25 +216,23 @@ exports.createProductReview = catchAsyncErrors (async  (req, res, next) => {
 
 })
 
-// Get Product Reviews => /api/v1/reviews
 
-exports.getProductReviews = catchAsyncErrors (async  (req, res, next) => {
-
+// Get Product Reviews   =>   /api/v1/reviews
+exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.query.id);
 
     res.status(200).json({
         success: true,
         reviews: product.reviews
-
     })
-
 })
 
-// Delete Product Review => /api/v1/reviews
-
-exports.deleteReviews = catchAsyncErrors (async  (req, res, next) => {
+// Delete Product Review   =>   /api/v1/reviews
+exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
 
     const product = await Product.findById(req.query.productId);
+
+    console.log(product);
 
     const reviews = product.reviews.filter(review => review._id.toString() !== req.query.id.toString());
 
@@ -194,7 +252,5 @@ exports.deleteReviews = catchAsyncErrors (async  (req, res, next) => {
 
     res.status(200).json({
         success: true
-
     })
-
 })

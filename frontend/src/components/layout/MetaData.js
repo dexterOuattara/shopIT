@@ -1,6 +1,5 @@
-import React, { Fragment} from "react";
-import {Helmet} from "react-helmet";
-import '../../App.css';
+import React from 'react'
+import { Helmet } from 'react-helmet'
 
 const MetaData = ({ title }) => {
     return (
