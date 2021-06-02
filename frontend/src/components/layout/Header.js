@@ -27,7 +27,7 @@ const Header = () => {
                 <div className="col-12 col-md-3 text-light text-center">
                     <div className="navbar-brand">
                         <Link to="/">
-                            <span>E-COM CART</span>
+                            <span>E-COM</span>
                         </Link>
                     </div>
                 </div>
