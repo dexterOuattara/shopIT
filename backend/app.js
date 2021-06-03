@@ -5,7 +5,6 @@ app.disable("x-powered-by");
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
-// const dotenv = require('dotenv');
 const path = require('path')
 
 const errorMiddleware = require('./middlewares/errors')
