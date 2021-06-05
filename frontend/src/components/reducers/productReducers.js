@@ -12,7 +12,7 @@ import {
     from '../../constants/productConstants'
 
 // Product List
-export const productReducers = (state = { products: []}, action) => {
+export const productReducers = (action, state = { products: []}) => {
     switch (action.type){
         case ALL_PRODUCTS_REQUEST:
             return {
@@ -49,7 +49,7 @@ export const productReducers = (state = { products: []}, action) => {
 
 // Product Details
 
-export const productDetailsReducer = (state = {  product : {} }, action ) => {
+export const productDetailsReducer = (action, state = {  product : {} } ) => {
     switch (action.type) {
 
         case PRODUCT_DETAILS_REQUEST:

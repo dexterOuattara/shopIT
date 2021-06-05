@@ -22,7 +22,7 @@ import {
     CLEAR_ERRORS
 } from '../constants/orderConstants'
 
-export const newOrderReducer = (state = {}, action) => {
+export const newOrderReducer = (action, state = {}) => {
     switch (action.type) {
 
         case CREATE_ORDER_REQUEST:
@@ -54,7 +54,7 @@ export const newOrderReducer = (state = {}, action) => {
     }
 }
 
-export const myOrdersReducer = (state = { orders: [] }, action) => {
+export const myOrdersReducer = (action, state = { orders: [] }) => {
     switch (action.type) {
 
         case MY_ORDERS_REQUEST:
@@ -84,7 +84,7 @@ export const myOrdersReducer = (state = { orders: [] }, action) => {
     }
 }
 
-export const orderDetailsReducer = (state = { order: {} }, action) => {
+export const orderDetailsReducer = (action, state = { order: {} }) => {
     switch (action.type) {
 
         case ORDER_DETAILS_REQUEST:
@@ -114,7 +114,7 @@ export const orderDetailsReducer = (state = { order: {} }, action) => {
     }
 }
 
-export const allOrdersReducer = (state = { orders: [] }, action) => {
+export const allOrdersReducer = (action, state = { orders: [] }) => {
     switch (action.type) {
 
         case ALL_ORDERS_REQUEST:
@@ -145,7 +145,7 @@ export const allOrdersReducer = (state = { orders: [] }, action) => {
     }
 }
 
-export const orderReducer = (state = {}, action) => {
+export const orderReducer = (action, state = {}) => {
     switch (action.type) {
 
         case UPDATE_ORDER_REQUEST:
