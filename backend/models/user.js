@@ -10,6 +10,11 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please enter your name'],
         maxLength: [30, 'Your name cannot exceed 30 characters']
     },
+    surname: {
+        type: String,
+        required: [true, 'Please enter your surname'],
+        maxLength: [30, 'Your name cannot exceed 30 characters']
+    },
     email: {
         type: String,
         required: [true, 'Please enter your email'],
@@ -35,6 +40,19 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: 'user'
+    },
+    phone: {
+        type: String,
+        required: [true, 'Please enter your phone number'],
+        maxLength: [18, 'Your phone number cannot exceed 30 characters']
+    },
+    birthday: {
+        type: Date,
+        required: [true, 'Please enter your Birthday']
+    },
+    gender: {
+        type: String,
+        required: [true, 'Please select your Gender']
     },
     createdAt: {
         type: Date,

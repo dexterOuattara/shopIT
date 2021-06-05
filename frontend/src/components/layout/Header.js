@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { logout } from '../../actions/userActions'
 
-import Search from './Search'
 
 import '../../App.css'
 
@@ -27,7 +26,7 @@ const Header = () => {
                 <div className="col-12 col-md-3 text-light text-center">
                     <div className="navbar-brand">
                         <Link to="/">
-                            <span>E-COM</span>
+                            <img src="/images/homeshop-logo.png" alt="homeshop" />
                         </Link>
                     </div>
                 </div>
@@ -81,15 +80,7 @@ const Header = () => {
 
                 </div>
             </nav>
-            <div className="row justify-content-md-center header_side">
 
-                <div className="col-md-auto">
-                    <p className="text-center"> Find anything in <i className="fa fa-map-marker" aria-hidden="true"></i>
-                        <button type="button" className="btn btn-primary btn-sm">All Ivory Coast</button>
-                    </p>
-                    <Route render={({ history }) => <Search history={history} />} />
-                </div>
-            </div>
 
         </Fragment>
     )

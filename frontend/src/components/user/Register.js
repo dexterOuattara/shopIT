@@ -10,11 +10,12 @@ const Register = ({ history }) => {
 
     const [user, setUser] = useState({
         name: '',
+        surname: '',
         email: '',
         password: '',
     })
 
-    const { name, email, password } = user;
+    const { name, surname, email, password } = user;
 
     const [avatar, setAvatar] = useState('')
     const [avatarPreview, setAvatarPreview] = useState('/images/default_avatar.jpg')
@@ -42,6 +43,7 @@ const Register = ({ history }) => {
 
         const formData = new FormData();
         formData.set('name', name);
+        formData.set('surname', surname);
         formData.set('email', email);
         formData.set('password', password);
         formData.set('avatar', avatar);
@@ -86,6 +88,18 @@ const Register = ({ history }) => {
                                 className="form-control"
                                 name='name'
                                 value={name}
+                                onChange={onChange}
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="email_field">Surname</label>
+                            <input
+                                type="surname"
+                                id="surname_field"
+                                className="form-control"
+                                name='surname'
+                                value={surname}
                                 onChange={onChange}
                             />
                         </div>

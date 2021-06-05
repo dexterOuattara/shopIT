@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Amazon Ember';
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -35,7 +35,6 @@ body {
 
 nav {
   background-color: #232f3e;
-  color: white;
   padding: 1rem 1rem;
 }
 
@@ -49,8 +48,7 @@ nav {
 }
 
 #search_field {
-  height: 4rem;
-  width: 50rem;
+  height: 2.4rem;
   padding: 1rem;
 }
 
@@ -58,7 +56,7 @@ nav {
 #view_btn {
   background-color: #febd69;
   padding: 0.4rem 1.8rem;
-  font-family: "Roboto", sans-serif;
+  font-family: calibri;
 }
 
 #cart {
@@ -98,7 +96,7 @@ nav {
 }
 
 .card-text {
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 #view_btn {
@@ -124,12 +122,10 @@ nav {
 
 /* Footer */
 footer {
-  padding-top: 500px;
   margin-top: 8rem;
-  color: white;
+  color: grey;
   bottom: 0;
   width: 100%;
-  background-color: #3db83a;
 }
 
 /* Ratings */
@@ -137,7 +133,7 @@ footer {
 .rating-outer {
   display: inline-block;
   position: relative;
-  font-family: "Roboto", sans-serif;
+  font-family: FontAwesome;
   color: #fdcc0d;
 }
 
@@ -166,7 +162,7 @@ footer {
 }
 
 #product_price {
-  font-size: 12px;
+  font-size: 2rem;
   font-weight: bold;
 }
 

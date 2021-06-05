@@ -7,20 +7,25 @@ const Product = ({ product, col }) => {
             <div className="card p-3 rounded">
                 <img
                     className="card-img-top mx-auto"
-                    src={product.images[0].url}
+                    src={product.images[0].url} alt="product"
                 />
                 <div className="card-body d-flex flex-column">
-                    <h5 className="card-title">
-                        <Link to={`/product/${product._id}`}>{product.name}</Link>
-                    </h5>
-                    <div className="ratings mt-auto">
-                        {/*<div className="rating-outer">*/}
-                        {/*    <div className="rating-inner" style={{ width: `${(product.ratings / 5) * 100}%` }}></div>*/}
-                        {/*</div>*/}
-                        {/*<span id="no_of_reviews">({product.numOfReviews} Reviews)</span>*/}
+                    <div className="row">
+                        <div className="col-md-6">
+                            <h5 className="card-title text-left">
+                                <Link to={`/product/${product._id}`}>{product.name}</Link>
+                            </h5>                        </div>
+                        <div className="col-md-6 text-right">
+                            <p className="card-text">${product.price}</p>
+                        </div>
                     </div>
-                    <p className="card-text text-success">${product.price}</p>
-                    {/*<Link to={`/product/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>*/}
+                    <div className="ratings mt-auto">
+                        <div className="rating-outer">
+                            <div className="rating-inner" style={{ width: `${(product.ratings / 5) * 100}%` }}></div>
+                        </div>
+                        <span id="no_of_reviews">({product.numOfReviews})</span>
+                    </div>
+
                 </div>
             </div>
         </div>

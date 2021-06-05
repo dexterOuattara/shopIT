@@ -27,11 +27,23 @@ const Profile = () => {
                         </div>
 
                         <div className="col-12 col-md-5">
-                            <h4>Full Name</h4>
+                            <h4>Name</h4>
                             <p>{user.name}</p>
+
+                            <h4>Surname</h4>
+                            <p>{user.surname}</p>
 
                             <h4>Email Address</h4>
                             <p>{user.email}</p>
+
+                            <h4>Birthday</h4>
+                            <p>{user.birthday}</p>
+
+                            <h4>Phone</h4>
+                            <p>{user.phone}</p>
+
+                            <h4>Gender</h4>
+                            <p>{user.gender}</p>
 
                             <h4>Joined On</h4>
                             <p>{String(user.createdAt).substring(0, 10)}</p>

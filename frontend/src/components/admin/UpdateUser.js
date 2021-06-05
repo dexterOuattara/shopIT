@@ -11,6 +11,8 @@ import { UPDATE_USER_RESET } from '../../constants/userConstants'
 const UpdateUser = ({ history, match }) => {
 
     const [name, setName] = useState('')
+    const [surname, setSurname] = useState('')
+    const [birthday, setBirthday] = useState('')
     const [email, setEmail] = useState('')
     const [role, setRole] = useState('')
 
@@ -29,6 +31,8 @@ const UpdateUser = ({ history, match }) => {
             dispatch(getUserDetails(userId))
         } else {
             setName(user.name);
+            setSurname(user.surname);
+            setBirthday(user.birthday);
             setEmail(user.email);
             setRole(user.role)
         }
@@ -55,6 +59,8 @@ const UpdateUser = ({ history, match }) => {
 
         const formData = new FormData();
         formData.set('name', name);
+        formData.set('surname', surname);
+        formData.set('birthday', birthday);
         formData.set('email', email);
         formData.set('role', role);
 
@@ -89,6 +95,30 @@ const UpdateUser = ({ history, match }) => {
                                 </div>
 
                                 <div className="form-group">
+                                    <label htmlFor="surname_field">Surname</label>
+                                    <input
+                                        type="surname"
+                                        id="surname_field"
+                                        className="form-control"
+                                        name='surname'
+                                        value={surname}
+                                        onChange={(e) => setSurname(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="birthday_field">Birthday</label>
+                                    <input
+                                        type="date"
+                                        id="birthday_field"
+                                        className="form-control"
+                                        name='birthday'
+                                        value={birthday}
+                                        onChange={(e) => setBirthday(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
                                     <label htmlFor="email_field">Email</label>
                                     <input
                                         type="email"
@@ -99,6 +129,8 @@ const UpdateUser = ({ history, match }) => {
                                         onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </div>
+
+
 
                                 <div className="form-group">
                                     <label htmlFor="role_field">Role</label>

@@ -10,6 +10,8 @@ import Loader from './layout/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert';
 import { getProducts } from '../actions/productActions'
+import {Route} from "react-router-dom";
+import Search from "./layout/Search";
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range)
@@ -68,7 +70,15 @@ const Home = ({ match }) => {
                 <Fragment>
                     <MetaData title={'Buy Best Products Online'} />
 
-                    <h3 id="products_heading">Latest Products</h3>
+                    <div className="row justify-content-md-center header_side">
+
+                        <div className="col-md-auto">
+                            <p className="text-center"> Find anything in <i className="fa fa-map-marker" aria-hidden="true"></i>
+                                <button type="button" className="btn btn-primary btn-sm">All Ivory Coast</button>
+                            </p>
+                            <Route render={({ history }) => <Search history={history} />} />
+                        </div>
+                    </div>
 
                     <section id="products" className="container mt-5">
                         <div className="row">

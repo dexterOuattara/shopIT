@@ -53,8 +53,19 @@ const UsersList = ({ history }) => {
                     sort: 'asc'
                 },
                 {
+                    label: 'Surname',
+                    field: 'surname',
+                    sort: 'asc'
+                },
+                {
                     label: 'Email',
                     field: 'email',
+                    sort: 'asc'
+                }
+                ,
+                {
+                    label: 'Birthday',
+                    field: 'birthday',
                     sort: 'asc'
                 },
                 {
@@ -74,6 +85,8 @@ const UsersList = ({ history }) => {
             data.rows.push({
                 id: user._id,
                 name: user.name,
+                surname: user.surname,
+                birthday: user.birthday,
                 email: user.email,
                 role: user.role,
 

@@ -17,10 +17,11 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
         crop: "scale"
     })
 
-    const { name, email, password } = req.body;
+    const { name, surname, email, password } = req.body;
 
     const user = await User.create({
         name,
+        surname,
         email,
         password,
         avatar: {
@@ -167,6 +168,10 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
+        surname: req.body.surname,
+        phone: req.body.phone,
+        birthday: req.body.birthday,
+        gender: req.body.gender,
         email: req.body.email
     }
 
@@ -245,6 +250,8 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
+        surname: req.body.surname,
+        birthday: req.body.birthday,
         email: req.body.email,
         role: req.body.role
     }
