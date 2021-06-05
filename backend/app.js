@@ -1,6 +1,6 @@
 const express = require('express');
 const app1 = express();
-
+app1.disable("x-powered-by");
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
