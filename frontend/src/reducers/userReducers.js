@@ -41,7 +41,7 @@ import {
     CLEAR_ERRORS
 } from '../constants/userConstants'
 
-export const authReducer = (action, state = { user: {} }) => {
+export const authReducer = (state = { user: {} }, action) => {
     switch (action.type) {
 
         case LOGIN_REQUEST:
@@ -104,7 +104,7 @@ export const authReducer = (action, state = { user: {} }) => {
     }
 }
 
-export const userReducer = (action, state = {}) => {
+export const userReducer = (state = {}, action) => {
     switch (action.type) {
 
         case UPDATE_PROFILE_REQUEST:
@@ -167,7 +167,7 @@ export const userReducer = (action, state = {}) => {
     }
 }
 
-export const forgotPasswordReducer = (action, state = {}) => {
+export const forgotPasswordReducer = (state = {}, action) => {
     switch (action.type) {
 
         case FORGOT_PASSWORD_REQUEST:
@@ -210,7 +210,7 @@ export const forgotPasswordReducer = (action, state = {}) => {
     }
 }
 
-export const allUsersReducer = (action, state = { users: [] }) => {
+export const allUsersReducer = (state = { users: [] }, action) => {
     switch (action.type) {
 
         case ALL_USERS_REQUEST:
@@ -244,7 +244,7 @@ export const allUsersReducer = (action, state = { users: [] }) => {
     }
 }
 
-export const userDetailsReducer = (action, state = { user: {} }) => {
+export const userDetailsReducer = (state = { user: {} }, action) => {
     switch (action.type) {
 
         case USER_DETAILS_REQUEST:
