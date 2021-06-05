@@ -35,7 +35,7 @@ import {
 
 } from '../constants/productConstants'
 
-export const productsReducer = (action, state = { products: [] }) => {
+export const productsReducer = (state = { products: [] }, action) => {
     switch (action.type) {
         case ALL_PRODUCTS_REQUEST:
         case ADMIN_PRODUCTS_REQUEST:
@@ -77,7 +77,7 @@ export const productsReducer = (action, state = { products: [] }) => {
     }
 }
 
-export const newProductReducer = (action, state = { product: {} }) => {
+export const newProductReducer = (state = { product: {} }, action) => {
     switch (action.type) {
 
         case NEW_PRODUCT_REQUEST:
@@ -116,7 +116,7 @@ export const newProductReducer = (action, state = { product: {} }) => {
     }
 }
 
-export const productReducer = (action, state = {}) => {
+export const productReducer = (state = {}, action) => {
     switch (action.type) {
 
         case DELETE_PRODUCT_REQUEST:
@@ -171,7 +171,7 @@ export const productReducer = (action, state = {}) => {
     }
 }
 
-export const productDetailsReducer = (action, state = { product: {} }) => {
+export const productDetailsReducer = (state = { product: {} }, action) => {
     switch (action.type) {
 
         case PRODUCT_DETAILS_REQUEST:
@@ -203,7 +203,7 @@ export const productDetailsReducer = (action, state = { product: {} }) => {
     }
 }
 
-export const newReviewReducer = (action, state = {}) => {
+export const newReviewReducer = (state = {}, action) => {
     switch (action.type) {
 
         case NEW_REVIEW_REQUEST:
@@ -241,7 +241,7 @@ export const newReviewReducer = (action, state = {}) => {
     }
 }
 
-export const productReviewsReducer = (action, state = { review: [] }) => {
+export const productReviewsReducer = (state = { review: [] }, action) => {
     switch (action.type) {
 
         case GET_REVIEWS_REQUEST:
@@ -273,7 +273,7 @@ export const productReviewsReducer = (action, state = { review: [] }) => {
     }
 }
 
-export const reviewReducer = (action, state = {}) => {
+export const reviewReducer = (state = {}, action) => {
     switch (action.type) {
 
         case DELETE_REVIEW_REQUEST:

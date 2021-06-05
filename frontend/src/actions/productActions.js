@@ -27,12 +27,13 @@ import {
     GET_REVIEWS_FAIL,
     DELETE_REVIEW_REQUEST,
     DELETE_REVIEW_SUCCESS,
+    DELETE_REVIEW_RESET,
     DELETE_REVIEW_FAIL,
     CLEAR_ERRORS
 
 } from '../constants/productConstants'
 
-export const getProducts = (price, category, keyword = '', currentPage = 1,  rating = 0) => async (dispatch) => {
+export const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0) => async (dispatch) => {
     try {
 
         dispatch({ type: ALL_PRODUCTS_REQUEST })
