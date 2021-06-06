@@ -1,4 +1,5 @@
 const Product = require('../models/product')
+const Category = require('../models/productCategory')
 
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
@@ -39,11 +40,95 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
     })
 })
 
+// Create new category   =>   /api/v1/admin/product_category/new
+exports.newCategory = catchAsyncErrors(async (req, res, next) => {
+
+    req.body.user = req.user.id;
+
+    const category = await Category.create(req.body);
+
+    res.status(201).json({
+        success: true,
+        category
+    })
+})
+
+// Get all categories (Admin)  =>   /api/v1/admin/product_category
+exports.getAdminCategories = catchAsyncErrors(async (req, res, next) => {
+
+    const categories = await Category.find();
+
+    res.status(200).json({
+        success: true,
+        categories
+    })
+
+})
+
+// Get single category details   =>   /api/v1/admin/product/:id
+exports.getAdminSingleCategory = catchAsyncErrors(async (req, res, next) => {
+
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+        return next(new ErrorHandler('Category not found', 404));
+    }
+
+
+    res.status(200).json({
+        success: true,
+        category
+    })
+})
+
+// Delete Category   =>   /api/v1/admin/product_category/:id
+exports.deleteCategory = catchAsyncErrors(async (req, res, next) => {
+
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+        return next(new ErrorHandler('Category not found', 404));
+    }
+
+    await category.remove();
+
+    res.status(200).json({
+        success: true,
+        message: 'Category is deleted.'
+    })
+
+})
+
+// Update Category   =>   /api/v1/admin/product_category/:id
+exports.updateCategory = catchAsyncErrors(async (req, res, next) => {
+
+    let category = await Category.findById(req.params.id);
+
+    if (!category) {
+        return next(new ErrorHandler('Category not found', 404));
+    }
+
+
+    category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    });
+
+    res.status(200).json({
+        success: true,
+        category
+    })
+
+})
+
+
+
 
 // Get all products   =>   /api/v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
-    const resPerPage = 4;
+    const resPerPage = 20;
     const productsCount = await Product.countDocuments();
 
     const apiFeatures = new APIFeatures(Product.find(), req.query)

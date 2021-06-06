@@ -21,6 +21,10 @@ const Sidebar = () => {
                             <li>
                                 <Link to="/admin/product"><i className="fa fa-plus"></i> Create</Link>
                             </li>
+
+                            <li>
+                                <Link to="/admin/category"><i className="fa fa-plus"></i> Add Category</Link>
+                            </li>
                         </ul>
                     </li>
 
