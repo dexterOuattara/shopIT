@@ -43,16 +43,16 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        required: [true, 'Please enter your phone number'],
+        required: [false, 'Please enter your phone number'],
         maxLength: [18, 'Your phone number cannot exceed 30 characters']
     },
     birthday: {
         type: Date,
-        required: [true, 'Please enter your Birthday']
+        required: [false, 'Please enter your Birthday']
     },
     gender: {
         type: String,
-        required: [true, 'Please select your Gender']
+        required: [false, 'Please select your Gender']
     },
     createdAt: {
         type: Date,
@@ -90,7 +90,7 @@ userSchema.methods.getResetPasswordToken = function () {
     const resetToken = crypto.randomBytes(20).toString('hex');
 
     // Hash and set to resetPasswordToken
-    this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex')
+    this.resetPasswordToken = crypto.createHash('sha512').update(resetToken).digest('hex')
 
     // Set token expire time
     this.resetPasswordExpire = Date.now() + 30 * 60 * 1000
