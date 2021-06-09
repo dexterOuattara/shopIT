@@ -38,6 +38,10 @@ import UsersList from './components/admin/UsersList'
 import UpdateUser from './components/admin/UpdateUser'
 import ProductReviews from './components/admin/ProductReviews'
 
+import CategoriesList from './components/admin/CategoriesList'
+import UpdateCategory from './components/admin/UpdateCategory'
+import NewCategory from './components/admin/NewCategory'
+
 
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
@@ -108,6 +112,10 @@ function App() {
         <ProtectedRoute path="/admin/users" isAdmin={true} component={UsersList} exact />
         <ProtectedRoute path="/admin/user/:id" isAdmin={true} component={UpdateUser} exact />
         <ProtectedRoute path="/admin/reviews" isAdmin={true} component={ProductReviews} exact />
+
+        <ProtectedRoute path="/admin/categories" isAdmin={true} component={CategoriesList} exact />
+        <ProtectedRoute path="/admin/category/new" isAdmin={true} component={NewCategory} exact />
+        {/*<ProtectedRoute path="/admin/category/:id" isAdmin={true} component={UpdateCategory} exact />*/}
 
         {!loading && (!isAuthenticated || user.role !== 'admin') && (
           <Footer />

@@ -7,7 +7,7 @@ import Sidebar from './Sidebar'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getAdminProducts } from '../../actions/productActions'
+import { getAdminProducts, getAdminCategories } from '../../actions/productActions'
 import { allOrders } from '../../actions/orderActions'
 import { allUsers } from '../../actions/userActions'
 
@@ -28,6 +28,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(getAdminProducts())
+        dispatch(getAdminCategories())
         dispatch(allOrders())
         dispatch(allUsers())
     }, [dispatch])

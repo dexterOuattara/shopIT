@@ -27,12 +27,30 @@ import {
     GET_REVIEWS_FAIL,
     DELETE_REVIEW_REQUEST,
     DELETE_REVIEW_SUCCESS,
-    DELETE_REVIEW_RESET,
     DELETE_REVIEW_FAIL,
+    ADMIN_CATEGORIES_REQUEST,
+    ADMIN_CATEGORIES_SUCCESS,
+    ADMIN_CATEGORIES_FAIL,
+    ALL_CATEGORIES_REQUEST,
+    ALL_CATEGORIES_SUCCESS,
+    ALL_CATEGORIES_FAIL,
+    NEW_CATEGORY_REQUEST,
+    NEW_CATEGORY_SUCCESS,
+    NEW_CATEGORY_FAIL,
+    DELETE_CATEGORY_REQUEST,
+    DELETE_CATEGORY_SUCCESS,
+    DELETE_CATEGORY_FAIL,
+    UPDATE_CATEGORY_REQUEST,
+    UPDATE_CATEGORY_SUCCESS,
+    UPDATE_CATEGORY_FAIL,
+    CATEGORY_DETAILS_REQUEST,
+    CATEGORY_DETAILS_SUCCESS,
+    CATEGORY_DETAILS_FAIL,
     CLEAR_ERRORS
 
 } from '../constants/productConstants'
 
+// PRODUCTS
 export const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0) => async (dispatch) => {
     try {
 
@@ -153,6 +171,30 @@ export const getProductDetails = (id) => async (dispatch) => {
     }
 }
 
+
+export const getAdminProducts = () => async (dispatch) => {
+    try {
+
+        dispatch({ type: ADMIN_PRODUCTS_REQUEST })
+
+        const { data } = await axios.get(`/api/v1/admin/products`)
+
+        dispatch({
+            type: ADMIN_PRODUCTS_SUCCESS,
+            payload: data.products
+        })
+
+    } catch (error) {
+
+        dispatch({
+            type: ADMIN_PRODUCTS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Add new reviews
+
 export const newReview = (reviewData) => async (dispatch) => {
     try {
 
@@ -174,28 +216,6 @@ export const newReview = (reviewData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: NEW_REVIEW_FAIL,
-            payload: error.response.data.message
-        })
-    }
-}
-
-
-export const getAdminProducts = () => async (dispatch) => {
-    try {
-
-        dispatch({ type: ADMIN_PRODUCTS_REQUEST })
-
-        const { data } = await axios.get(`/api/v1/admin/products`)
-
-        dispatch({
-            type: ADMIN_PRODUCTS_SUCCESS,
-            payload: data.products
-        })
-
-    } catch (error) {
-
-        dispatch({
-            type: ADMIN_PRODUCTS_FAIL,
             payload: error.response.data.message
         })
     }
@@ -242,6 +262,149 @@ export const deleteReview = (id, productId) => async (dispatch) => {
 
         dispatch({
             type: DELETE_REVIEW_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// CATEGORY
+// export const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0) => async (dispatch) => {
+//     try {
+//
+//         dispatch({ type: ALL_PRODUCTS_REQUEST })
+//
+//         let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${rating}`
+//
+//         if (category) {
+//             link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}&ratings[gte]=${rating}`
+//         }
+//
+//         const { data } = await axios.get(link)
+//
+//         dispatch({
+//             type: ALL_PRODUCTS_SUCCESS,
+//             payload: data
+//         })
+//
+//     } catch (error) {
+//         dispatch({
+//             type: ALL_PRODUCTS_FAIL,
+//             payload: error.response.data.message
+//         })
+//     }
+// }
+
+export const newCategory = (categoryData) => async (dispatch) => {
+    try {
+
+        dispatch({ type: NEW_CATEGORY_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.post(`/api/v1/admin/product_category/new`, categoryData, config)
+
+        dispatch({
+            type: NEW_CATEGORY_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: NEW_CATEGORY_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Delete product (Admin)
+export const deleteCategory = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: DELETE_CATEGORY_REQUEST })
+
+        const { data } = await axios.delete(`/api/v1/admin/product_category/${id}`)
+
+        dispatch({
+            type: DELETE_CATEGORY_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        dispatch({
+            type: DELETE_CATEGORY_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Update Category (ADMIN)
+export const updateCategory = (id, categoryData) => async (dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_CATEGORY_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.put(`/api/v1/admin/product_category/${id}`, categoryData, config)
+
+        dispatch({
+            type: UPDATE_CATEGORY_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        dispatch({
+            type: UPDATE_CATEGORY_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+export const getCategoryDetails = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: PRODUCT_DETAILS_REQUEST })
+
+        const { data } = await axios.get(`/api/v1/product/${id}`)
+
+        dispatch({
+            type: PRODUCT_DETAILS_SUCCESS,
+            payload: data.product
+        })
+
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+
+export const getAdminCategories = () => async (dispatch) => {
+    try {
+
+        dispatch({ type: ADMIN_CATEGORIES_REQUEST })
+
+        const { data } = await axios.get(`/api/v1/admin/product_category`)
+
+        dispatch({
+            type: ADMIN_CATEGORIES_SUCCESS,
+            payload: data.categories
+        })
+
+    } catch (error) {
+
+        dispatch({
+            type: ADMIN_CATEGORIES_FAIL,
             payload: error.response.data.message
         })
     }

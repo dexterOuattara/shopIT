@@ -15,15 +15,11 @@ const Sidebar = () => {
                             className="fa fa-product-hunt"></i> Products</a>
                         <ul className="collapse list-unstyled" id="productSubmenu">
                             <li>
-                                <Link to="/admin/products"><i className="fa fa-clipboard"></i> All</Link>
+                                <Link to="/admin/products"><i className="fa fa-clipboard"></i> Product</Link>
                             </li>
 
                             <li>
-                                <Link to="/admin/product"><i className="fa fa-plus"></i> Create</Link>
-                            </li>
-
-                            <li>
-                                <Link to="/admin/category"><i className="fa fa-plus"></i> Add Category</Link>
+                                <Link to="/admin/categories"><i className="fa fa-clipboard"></i> Category</Link>
                             </li>
                         </ul>
                     </li>

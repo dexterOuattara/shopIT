@@ -8,19 +8,19 @@ import Sidebar from './Sidebar'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
-import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
+import { getAdminCategories, deleteCategory, clearErrors } from '../../actions/productActions'
+import { DELETE_CATEGORY_RESET } from '../../constants/productConstants'
 
-const ProductsList = ({ history }) => {
+const CategoriesList = ({ history }) => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, products } = useSelector(state => state.products);
-    const { error: deleteError, isDeleted } = useSelector(state => state.product)
+    const { loading, error, categories } = useSelector(state => state.categories);
+    const { error: deleteError, isDeleted } = useSelector(state => state.category)
 
     useEffect(() => {
-        dispatch(getAdminProducts());
+        dispatch(getAdminCategories());
 
         if (error) {
             alert.error(error);
@@ -33,14 +33,14 @@ const ProductsList = ({ history }) => {
         }
 
         if (isDeleted) {
-            alert.success('Product deleted successfully');
-            history.push('/admin/products');
-            dispatch({ type: DELETE_PRODUCT_RESET })
+            alert.success('Category deleted successfully');
+            history.push('/admin/categories');
+            dispatch({ type: DELETE_CATEGORY_RESET })
         }
 
     }, [dispatch, alert, error, deleteError, isDeleted, history])
 
-    const setProducts = () => {
+    const setCategories = () => {
         const data = {
             columns: [
                 {
@@ -49,18 +49,13 @@ const ProductsList = ({ history }) => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Name',
-                    field: 'name',
+                    label: 'Title',
+                    field: 'title',
                     sort: 'asc'
                 },
                 {
-                    label: 'Price',
-                    field: 'price',
-                    sort: 'asc'
-                },
-                {
-                    label: 'Stock',
-                    field: 'stock',
+                    label: 'Tag',
+                    field: 'tag',
                     sort: 'asc'
                 },
                 {
@@ -71,17 +66,17 @@ const ProductsList = ({ history }) => {
             rows: []
         }
 
-        products.forEach(product => {
+        categories.forEach(category => {
             data.rows.push({
-                id: product._id,
-                name: product.name,
-                price: `$${product.price}`,
-                stock: product.stock,
+                id: category._id,
+                title: category.title,
+                description: `$${category.description}`,
+                tag: category.tag,
                 actions: <Fragment>
-                    <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
+                    <Link to={`/admin/category/${category._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
                     </Link>
-                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteProductHandler(product._id)}>
+                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteCategoryHandler(category._id)}>
                         <i className="fa fa-trash"></i>
                     </button>
                 </Fragment>
@@ -91,13 +86,13 @@ const ProductsList = ({ history }) => {
         return data;
     }
 
-    const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id))
+    const deleteCategoryHandler = (id) => {
+        dispatch(deleteCategory(id))
     }
 
     return (
         <Fragment>
-            <MetaData title={'All Products'} />
+            <MetaData title={'All Categories'} />
             <div className="row">
                 <div className="col-12 col-md-2">
                     <Sidebar />
@@ -105,12 +100,12 @@ const ProductsList = ({ history }) => {
 
                 <div className="col-12 col-md-10">
                     <Fragment>
-                        <h1 className="my-5">All Products</h1>
-                        <Link to="/admin/product"><i className="btn btn-primary fa fa-plus"> Add Product</i></Link>
+                        <h1 className="my-5">All Categories</h1>
+                        <Link to="/admin/category/new"><i className="btn btn-primary fa fa-plus"> Add Category</i></Link>
 
                         {loading ? <Loader /> : (
                             <MDBDataTable
-                                data={setProducts()}
+                                data={setCategories()}
                                 className="px-3"
                                 bordered
                                 striped
@@ -126,4 +121,4 @@ const ProductsList = ({ history }) => {
     )
 }
 
-export default ProductsList
+export default CategoriesList

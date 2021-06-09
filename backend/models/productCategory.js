@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
+const validator = require('validator');
 
 const categorySchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Please enter title category'],
         trim: true,
-        maxLength: [100, 'Title category cannot exceed 100 characters']
+        maxLength: [100, 'Title category cannot exceed 100 characters'],
+        unique: true
     },
     description: {
         type: String,
