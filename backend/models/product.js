@@ -10,7 +10,6 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: [true, 'Please enter product price'],
-        maxLength: [5, 'Product name cannot exceed 5 characters'],
         default: 0.0
     },
     description: {
@@ -40,7 +39,6 @@ const productSchema = new mongoose.Schema({
     stock: {
         type: Number,
         required: [true, 'Please enter product stock'],
-        maxLength: [5, 'Product name cannot exceed 5 characters'],
         default: 0
     },
     numOfReviews: {
@@ -68,6 +66,22 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
+    brand: {
+        type: String,
+        required: [false, 'Please enter brand product'],
+    },
+    model: {
+        type: String,
+        required: [false, 'Please enter model product'],
+    },
+    color: {
+        type: String,
+        required: [false, 'Please enter color product'],
+    },
+    used: {
+        type: String,
+        required: [false, 'Please enter used product'],
+    },
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',

@@ -17,6 +17,11 @@ const UpdateProduct = ({ match, history }) => {
     const [seller, setSeller] = useState('');
     const [images, setImages] = useState([]);
 
+    const [brand, setBrand] = useState('');
+    const [model, setModel] = useState('');
+    const [color, setColor] = useState('');
+    const [used, setUsed] = useState('');
+
     const [oldImages, setOldImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([])
 
@@ -40,6 +45,13 @@ const UpdateProduct = ({ match, history }) => {
             setSeller(product.seller);
             setStock(product.stock)
             setOldImages(product.images)
+
+            setBrand(product.brand);
+            setModel(product.model);
+            setColor(product.color);
+            setUsed(product.used);
+
+
         }
 
         if (error) {
@@ -71,6 +83,12 @@ const UpdateProduct = ({ match, history }) => {
         formData.set('description', description);
         formData.set('stock', stock);
         formData.set('seller', seller);
+
+        formData.set('brand', brand);
+        formData.set('model', model);
+        formData.set('color', color);
+        formData.set('used', used);
+
 
         images.forEach(image => {
             formData.append('images', image)
@@ -143,15 +161,6 @@ const UpdateProduct = ({ match, history }) => {
                                     <textarea className="form-control" id="description_field" rows="8" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                                 </div>
 
-                                {/*<div className="form-group">*/}
-                                {/*    <label htmlFor="category_field">Category</label>*/}
-                                {/*    <select className="form-control" id="category_field" value={category} onChange={(e) => setCategory(e.target.value)}>*/}
-                                {/*        {categories.map(category => (*/}
-                                {/*            <option key={category} value={category} >{category}</option>*/}
-                                {/*        ))}*/}
-
-                                {/*    </select>*/}
-                                {/*</div>*/}
                                 <div className="form-group">
                                     <label htmlFor="stock_field">Stock</label>
                                     <input
@@ -160,6 +169,50 @@ const UpdateProduct = ({ match, history }) => {
                                         className="form-control"
                                         value={stock}
                                         onChange={(e) => setStock(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="stock_field">Brand</label>
+                                    <input
+                                        type="text"
+                                        id="brand_field"
+                                        className="form-control"
+                                        value={brand}
+                                        onChange={(e) => setBrand(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="stock_field">Color</label>
+                                    <input
+                                        type="text"
+                                        id="color_field"
+                                        className="form-control"
+                                        value={color}
+                                        onChange={(e) => setColor(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="stock_field">Model</label>
+                                    <input
+                                        type="text"
+                                        id="model_field"
+                                        className="form-control"
+                                        value={model}
+                                        onChange={(e) => setModel(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="stock_field">Used</label>
+                                    <input
+                                        type="text"
+                                        id="used_field"
+                                        className="form-control"
+                                        value={used}
+                                        onChange={(e) => setUsed(e.target.value)}
                                     />
                                 </div>
 

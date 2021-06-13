@@ -11,8 +11,9 @@ import { UPDATE_CATEGORY_RESET } from '../../constants/productConstants'
 const UpdateCategory = ({ match, history }) => {
 
     const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
     const [tag, setTag] = useState('');
+    const [description, setDescription] = useState('');
+
 
     const alert = useAlert();
     const dispatch = useDispatch();
@@ -28,8 +29,8 @@ const UpdateCategory = ({ match, history }) => {
             dispatch(getCategoryDetails(categoryId));
         } else {
             setTitle(category.title);
-            setDescription(category.description);
             setTag(category.tag);
+            setDescription(category.description);
         }
 
         if (error) {
@@ -56,14 +57,14 @@ const UpdateCategory = ({ match, history }) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.set('title', title);
-        formData.set('tag', tag);
+        formData.set('name', title);
+        formData.set('price', tag);
         formData.set('description', description);
-
 
 
         dispatch(updateCategory(category._id, formData))
     }
+
 
 
 
@@ -82,7 +83,7 @@ const UpdateCategory = ({ match, history }) => {
                                 <h1 className="mb-4">Update Category</h1>
 
                                 <div className="form-group">
-                                    <label htmlFor="title_field">Title</label>
+                                    <label htmlFor="name_field">Title</label>
                                     <input
                                         type="text"
                                         id="title_field"
@@ -91,18 +92,6 @@ const UpdateCategory = ({ match, history }) => {
                                         onChange={(e) => setTitle(e.target.value)}
                                     />
                                 </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="description_field">Description</label>
-                                    <input
-                                        type="textarea"
-                                        id="description_field"
-                                        className="form-control"
-                                        value={description}
-                                        onChange={(e) => setDescription(e.target.value)}
-                                    />
-                                </div>
-
 
                                 <div className="form-group">
                                     <label htmlFor="tag_field">Tag</label>
@@ -115,6 +104,20 @@ const UpdateCategory = ({ match, history }) => {
                                     />
                                 </div>
 
+                                <div className="form-group">
+                                    <label htmlFor="description_field">Description</label>
+                                    <textarea className="form-control" id="description_field" rows="8" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                                </div>
+
+                                {/*<div className="form-group">*/}
+                                {/*    <label htmlFor="category_field">Category</label>*/}
+                                {/*    <select className="form-control" id="category_field" value={category} onChange={(e) => setCategory(e.target.value)}>*/}
+                                {/*        {categories.map(category => (*/}
+                                {/*            <option key={category} value={category} >{category}</option>*/}
+                                {/*        ))}*/}
+
+                                {/*    </select>*/}
+                                {/*</div>*/}
 
 
                                 <button

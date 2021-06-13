@@ -165,6 +165,23 @@ const ProductDetails = ({ match }) => {
                             <h4 className="mt-2">Description:</h4>
                             <p>{product.description}</p>
                             <hr />
+
+                            <h4 className="mt-2">Brand:</h4>
+                            <p>{product.brand}</p>
+                            <hr />
+
+                            <h4 className="mt-2">Color:</h4>
+                            <p>{product.color}</p>
+                            <hr />
+
+                            <h4 className="mt-2">Model:</h4>
+                            <p>{product.model}</p>
+                            <hr />
+
+                            <h4 className="mt-2">Used:</h4>
+                            <p>{product.used}</p>
+                            <hr />
+
                             <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
 
                             {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings}>

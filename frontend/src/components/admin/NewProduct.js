@@ -5,7 +5,7 @@ import Sidebar from './Sidebar'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { newProduct, clearErrors } from '../../actions/productActions'
+import { newProduct, getCatories, clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 
 const NewProduct = ({ history }) => {
@@ -18,6 +18,10 @@ const NewProduct = ({ history }) => {
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([])
 
+    const [brand, setBrand] = useState('');
+    const [model, setModel] = useState('');
+    const [color, setColor] = useState('');
+    const [used, setUsed] = useState('');
 
 
     const alert = useAlert();
@@ -50,6 +54,11 @@ const NewProduct = ({ history }) => {
 
         formData.set('stock', stock);
         formData.set('seller', seller);
+
+        formData.set('brand', brand);
+        formData.set('model', model);
+        formData.set('color', color);
+        formData.set('used', used);
 
         images.forEach(image => {
             formData.append('images', image)
@@ -132,6 +141,61 @@ const NewProduct = ({ history }) => {
                                         onChange={(e) => setStock(e.target.value)}
                                     />
                                 </div>
+
+
+                                <div className="form-group">
+                                    <label htmlFor="stock_field">Brand</label>
+                                    <input
+                                        type="text"
+                                        id="brand_field"
+                                        className="form-control"
+                                        value={brand}
+                                        onChange={(e) => setBrand(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="stock_field">Color</label>
+                                    <input
+                                        type="text"
+                                        id="color_field"
+                                        className="form-control"
+                                        value={color}
+                                        onChange={(e) => setColor(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="stock_field">Model</label>
+                                    <input
+                                        type="text"
+                                        id="model_field"
+                                        className="form-control"
+                                        value={model}
+                                        onChange={(e) => setModel(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="stock_field">Used</label>
+                                    <input
+                                        type="text"
+                                        id="used_field"
+                                        className="form-control"
+                                        value={used}
+                                        onChange={(e) => setUsed(e.target.value)}
+                                    />
+                                </div>
+
+                                {/*<div className="form-group">*/}
+                                {/*    <label htmlFor="category_field">Category</label>*/}
+                                {/*    <select className="form-control" id="category_field" value={category} onChange={(e) => setCategory(e.target.value)}>*/}
+                                {/*        {categories.map(category => (*/}
+                                {/*            <option key={category} value={category} >{category}</option>*/}
+                                {/*        ))}*/}
+
+                                {/*    </select>*/}
+                                {/*</div>*/}
 
                                 <div className="form-group">
                                     <label htmlFor="seller_field">Seller Name</label>

@@ -43,7 +43,6 @@ router.route('/admin/product/:id')
 router.route('/admin/product_category').get(getAdminCategories);
 router.route('/admin/product_category/new').post(isAuthenticatedUser, authorizeRoles('admin'), newCategory);
 router.route('/admin/product_category/:id')
-    .get(isAuthenticatedUser, authorizeRoles('admin'), getAdminSingleCategory)
     .put(isAuthenticatedUser, authorizeRoles('admin'), updateCategory)
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteCategory);
 
