@@ -7,8 +7,6 @@ const sendEmail = require('../utils/sendEmail');
 
 const crypto = require('crypto');
 const cloudinary = require('cloudinary');
-const hash = crypto.createHash('sha512'); // Compliant
-
 
 // Register a user   => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -109,7 +107,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
     // Hash URL token
-    const resetPasswordToken = hash.update(req.params.token).digest('hex')
+    const resetPasswordToken = crypto.createHash('sha512').update(req.params.token).digest('hex')
 
     const user = await User.findOne({
         resetPasswordToken,
