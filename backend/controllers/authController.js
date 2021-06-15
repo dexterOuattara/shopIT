@@ -109,7 +109,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
     // Hash URL token
-    const resetPasswordToken = crypto.createHash('sha512').update(req.params.token).digest('hex')
+    const resetPasswordToken = hash.update(req.params.token).digest('hex')
 
     const user = await User.findOne({
         resetPasswordToken,
